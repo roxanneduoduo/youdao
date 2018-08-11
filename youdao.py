@@ -2,9 +2,6 @@ import json
 import requests
 import execjs
 import hashlib
-from fake_useragent import UserAgent
-
-ua = UserAgent()
 
 
 headers = {
@@ -17,19 +14,10 @@ headers = {
     "Referer": "http//fanyi.youdao.com/",
     "X-Requested-With": "XMLHttpRequest" }
 
-
-
-# headers['User-Agent'] = ua.random
-
 url = 'http://fanyi.youdao.com/translate_o?smartresult=dict&smartresult=rule'
 r = execjs.eval('"" + ((new Date).getTime() + parseInt(10 * Math.random(), 10))')
 S = "fanyideskweb"
 D = "ebSeFb%=XZ%T[KZ)c(sy!"
-
-    
-    
-
-
 
 
 def translate(word):
@@ -53,8 +41,6 @@ def translate(word):
     
     response = requests.post(url, headers=headers, data=data)
     if response.status_code == 200:
-        # print(response.json())
-        # print(type(response.json()))
         return response.json()
     else:
         print('translation failed')
@@ -74,6 +60,5 @@ def main():
     get_result(trans)
 
 if __name__ == '__main__':
-    # print(headers['User-Agent'])
     main()
 
